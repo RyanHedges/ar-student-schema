@@ -5,7 +5,7 @@ class Student < ActiveRecord::Base
   validates :email, :format => { :with => /.+@.+[.].{2,}/, :message => "Please enter valid email" }
   validates :email, :uniqueness => true
   validates :age, :numericality => { :greater_than_or_equal_to => 5 }
-
+  validates :phone, :format => { :with => /\(?[0-9]{3}\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}/, :message => "Please enter a phone number with at least 10 digits."}
 
   def name
     "#{self.first_name} #{self.last_name}"
@@ -18,4 +18,4 @@ end
 
 
 
-# Email addresses must contain at least one @ character and one . character, with at least one character before the @, one character between the @ and first ., and at least two characters after the final ..
+# Phone numbers must contain at least 10 digits, excluding non-numeric characters.
